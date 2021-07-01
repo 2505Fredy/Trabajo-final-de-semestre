@@ -39,6 +39,8 @@
 		<Unit filename="Evento.h" />
 		<Unit filename="Orden.cpp" />
 		<Unit filename="Orden.h" />
+		<Unit filename="Persona.cpp" />
+		<Unit filename="Persona.h" />
 		<Unit filename="Producto.cpp" />
 		<Unit filename="Producto.h" />
 		<Unit filename="Usuario.cpp" />
