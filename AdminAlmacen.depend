@@ -1,0 +1,64 @@
+# depslib dependency file v1.0
+1625146086 source:c:\c++, codeblocks\adminalmacen\main.cpp
+	"Ejecucion.h"
+
+1625150873 source:c:\c++, codeblocks\adminalmacen\orden.cpp
+	"Orden.h"
+
+1625014957 c:\c++, codeblocks\adminalmacen\orden.h
+	<iostream>
+	<cstring>
+	<ctime>
+
+1625150930 source:c:\c++, codeblocks\adminalmacen\usuario.cpp
+	"Usuario.h"
+
+1625145268 c:\c++, codeblocks\adminalmacen\usuario.h
+	<vector>
+	<fstream>
+	"Orden.h"
+	"Persona.h"
+
+1625146957 c:\c++, codeblocks\adminalmacen\almacen.h
+	"Usuario.h"
+	"Producto.h"
+	"Persona.h"
+
+1625010373 c:\c++, codeblocks\adminalmacen\producto.h
+	<vector>
+	<iostream>
+	<cstring>
+	"Orden.h"
+
+1625010373 source:c:\c++, codeblocks\adminalmacen\producto.cpp
+	"Producto.h"
+
+1625150738 source:c:\c++, codeblocks\adminalmacen\evento.cpp
+	"Evento.h"
+
+1624977023 c:\c++, codeblocks\adminalmacen\ejecucion.h
+	"Evento.h"
+
+1625145844 c:\c++, codeblocks\adminalmacen\evento.h
+	"Almacen.h"
+
+1625146524 source:c:\c++, codeblocks\adminalmacen\ejecucion.cpp
+	"Ejecucion.h"
+
+1624903221 c:\c++, codeblocks\adminalmacen\cargar.h
+	"Almacen.h"
+	<fstream>
+
+1624899521 c:\c++, codeblocks\adminalmacen\guardar.h
+	"Almacen.h"
+
+1625151291 source:c:\c++, codeblocks\adminalmacen\almacen.cpp
+	"Almacen.h"
+
+1625147097 c:\c++, codeblocks\adminalmacen\persona.h
+	<iostream>
+	<cstring>
+
+1625147097 source:c:\c++, codeblocks\adminalmacen\persona.cpp
+	"Persona.h"
+

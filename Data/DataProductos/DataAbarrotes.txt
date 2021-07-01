@@ -1,0 +1,40 @@
+100
+Azucar blanca Paramonga
+saco x50 kilos
+130
+168.5
+101
+Harina Blancaflor
+saco x25 kilos
+220
+134.5
+102
+Arroz Gallito de Oro
+saco x50 kilos
+153
+165
+103
+Avena 3 ositos chocolate
+bolsa x10 kilos
+231
+45
+104
+Avena 3 ositos maca
+bolsa x10 kilos
+256
+46
+105
+Harina Villareal
+saco x50 kilos
+340
+102
+106
+Harina integral BlancaFlor
+saco x25 kilos
+243
+85
+107
+Azucar rubia Gallito de Oro
+saco x50 kilos
+180
+130.5

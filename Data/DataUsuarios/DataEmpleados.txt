@@ -1,0 +1,35 @@
+002
+Jose Fernando Puerta Llanos
+Jose001
+Av. El Sol No. 1024- Puno
+65768788
+0303Jose
+Data\DataUsuarios\Historial\HistorialJose001.txt
+003
+Pablo Coaquira Choque
+Pablo021
+Jr. Conde de Lemos No. 345- Puno
+23543565
+1998Pablo
+Data\DataUsuarios\Historial\HistorialPablo021.txt
+004
+Juan Pablo Llanos Meza
+Juan123
+Jr. Jauregui No. 234- Juliaca
+21123232
+12345678
+Data\DataUsuarios\Historial\HistorialJuan123.txt
+005
+Jose Luis Llanos Zapata
+JoseLuis
+Jr. Simon Bolivar No. 213- Juliaca
+54332123
+11112222
+Data\DataUsuarios\Historial\HistorialJoseLuis.txt
+001
+Jhon Calcina Ramirez
+Jhon001
+Jr. Apurimac No. 432- Juliaca
+54364354
+12341234
+Data\DataUsuarios\Historial\HistorialJhon001.txt

@@ -1,0 +1,40 @@
+200
+Gaseosa Inka Kola
+sixpack x3 litros c/u
+80
+28
+201
+Gaseosa Coca Cola
+sixpack x3 litros c/u
+40
+30
+202
+Yogurt Gloria sabor fresa
+sixpack x1 litro c/u
+57
+30
+203
+Yogurt Gloria sabor pera
+sixpack x1 litro c/u
+60
+30
+204
+Yogurt Gloria sabor fresa
+pack x24 unid. 300ml c/u
+56
+32
+205
+Gaseosa KR sabor cola
+sixpack x3 litros c/u
+75
+28
+206
+Gaseosa Sprite
+sixpack x2.5 litros c/u
+46
+34
+207
+Gaseosa SevenUp
+sixpack x2 litros c/u
+56
+35
