@@ -20,19 +20,19 @@ PersonaNatural::PersonaNatural(string &_nombresyApellidos, string &_nroDNI, stri
 }
 
 void PersonaJuridica::mostrarInfo(){
-    cout << "NACIONALIDAD       : " << nacionalidad << endl;
-    cout << "NOMBRE COMERCIAL   : " << nombreComercial << endl;
-    cout << "RAZ\340N SOCIAL       : " << razonSocial << endl;
-    cout << "DOMICILIO FISCAL   : " << domicilioFiscal << endl;
-    cout << "N\351MERO DE " << tipoIdentificacion << "      : " << nroRUC << endl;
-    cout << "FINALIDAD          : " << fin << endl;
+    cout << "NACIONALIDAD          : " << nacionalidad << endl;
+    cout << "NOMBRE COMERCIAL      : " << nombreComercial << endl;
+    cout << "RAZ\340N SOCIAL          : " << razonSocial << endl;
+    cout << "DOMICILIO FISCAL      : " << domicilioFiscal << endl;
+    cout << "N\351MERO DE " << tipoIdentificacion << "         : " << nroRUC << endl;
+    cout << "FINALIDAD             : " << fin << endl;
 }
 
 void PersonaNatural::mostrarInfo(){
-    cout << "NACIONALIDAD       : " << nacionalidad << endl;
-    cout << "NOMBRES Y APELLIDOS: " << nombresyApellidos << endl;
-    cout << "N\351MERO DE " << tipoIdentificacion << "   : " << endl;
-    cout << "EDAD               : " << edad << endl;
+    cout << "NACIONALIDAD          : " << nacionalidad << endl;
+    cout << "NOMBRES Y APELLIDOS   : " << nombresyApellidos << endl;
+    cout << "N\351MERO DE " << tipoIdentificacion << "         : " << nroDNI << endl;
+    cout << "EDAD                  : " << edad << endl;
 }
 
 //Gets Persona

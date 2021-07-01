@@ -34,6 +34,7 @@ class PersonaNatural: public Persona{
 protected:
     string nombresyApellidos, nroDNI, domicilio;
     int edad;
+public:
     PersonaNatural(string&, string&, string&, int);
     virtual void mostrarInfo();
     string getNombresyApellidos();

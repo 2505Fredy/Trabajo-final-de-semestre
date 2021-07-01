@@ -6,12 +6,13 @@
 
 class Almacen: public PersonaJuridica{
 protected:
-    string sector= "PRIMARIO (PRODUCTOS DE PRIMERA NECESIDAD)";
+    string sector;
     vector <Usuario> listEmpleados;
     vector <Usuario> administrador;
     vector <vector<Producto>> listProductos;
 public:
     explicit Almacen(string &_nombreComercial, string &_razonSocial, string &_domicilioFiscal, string &_nroRUC, string &_fin):PersonaJuridica(_nombreComercial, _razonSocial, _domicilioFiscal, _nroRUC, _fin){
+        sector= "PRIMARIO (PRODUCTOS DE PRIMERA NECESIDAD)";
         vector <Producto> lista;
         listProductos.push_back(lista);
         listProductos.push_back(lista);

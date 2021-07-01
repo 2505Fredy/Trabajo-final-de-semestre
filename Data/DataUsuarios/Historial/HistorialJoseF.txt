@@ -1,0 +1,21 @@
+13:48:55
+01/07/2021
+ENTRADA
+P. Limpieza
+Lavavajillas Sapolio
+23
+002
+13:48:45
+01/07/2021
+ENTRADA
+Bebidas
+Yogurt Gloria sabor fresa
+11
+002
+13:48:35
+01/07/2021
+ENTRADA
+Abarrotes
+Azucar blanca Paramonga
+14
+002

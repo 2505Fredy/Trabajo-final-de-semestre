@@ -27,6 +27,7 @@ int contarEmpleados(){
         getline(registro, a);
         getline(registro, a);
         getline(registro, a);
+        getline(registro, a);
         valor++;
     }
     registro.close();
@@ -54,9 +55,9 @@ int contarHistorial(string directorio){
 void Almacen::mostrarInfo(){
     cout << "==============================================INFORMACI\340N GENERAL DEL ALMAC\220N===========================================\n";
     PersonaJuridica::mostrarInfo();
-    cout << "SECTOR             : " << sector << endl;
-    cout << "NRO. DE EMPLEADOS  : " << getSizeEmpleados() << endl;
-    cout << "NRO. DE PRODUCTOS  : " << getSizeAbarrotes()+getSizeBebidas()+ getSizeLimpieza() << endl;
+    cout << "SECTOR                : " << sector << endl;
+    cout << "NRO. DE EMPLEADOS     : " << getSizeEmpleados() << endl;
+    cout << "NRO. DE PRODUCTOS     : " << getSizeAbarrotes()+getSizeBebidas()+ getSizeLimpieza() << endl;
     cout << "========================================================================================================================\n";
     system("pause");
 }
@@ -144,9 +145,9 @@ void Almacen::guardarHistorialEmpleado(int indice){
     listEmpleados[indice].borrarHistorial();
 }
 void Almacen::modificarDatosEmpleado(int indice, string seccionMod, string &cadena){
-    if (seccionMod=="nombre") listEmpleados[indice].setNombre(cadena);
+    if (seccionMod=="nombre") listEmpleados[indice].setNombresyApellidos(cadena);
     else if (seccionMod=="nombreUsuario") listEmpleados[indice].setNombreUsuario(cadena);
-    else if (seccionMod=="direccion") listEmpleados[indice].setDireccion(cadena);
+    else if (seccionMod=="direccion") listEmpleados[indice].setDomicilio(cadena);
     else if (seccionMod=="contrasenha") listEmpleados[indice].setContrasenha(cadena);
 }
 
@@ -156,7 +157,7 @@ void Almacen::mostrarInfoAdmin(){
 }
 void Almacen::cargarHistorialAdmin(){
     administrador[0].borrarHistorial();
-    string hora, fecha, tipo, seccion, descripcion, cantidad, nombre;
+    string hora, fecha, tipo, seccion, descripcion, cantidad, codigo;
     ifstream registro(administrador[0].getDirectorio().c_str());
     for (int i=0; i<contarHistorial(administrador[0].getDirectorio()); i++){
         getline(registro, hora);
@@ -165,8 +166,8 @@ void Almacen::cargarHistorialAdmin(){
         getline(registro, seccion);
         getline(registro, descripcion);
         getline(registro, cantidad);
-        getline(registro, nombre);
-        Orden orden(hora, fecha, tipo, seccion, descripcion, cantidad, nombre);
+        getline(registro, codigo);
+        Orden orden(hora, fecha, tipo, seccion, descripcion, cantidad, codigo);
         administrador[0].addOrdenHistorialFinal(orden);
     }
     registro.close();
@@ -191,9 +192,9 @@ void Almacen::guardarHistorialAdmin(){
     administrador[0].borrarHistorial();
 }
 void Almacen::modificarDatosAdmin(string seccionMod, string &cadena){
-    if (seccionMod=="nombre") administrador[0].setNombre(cadena);
+    if (seccionMod=="nombre") administrador[0].setNombresyApellidos(cadena);
     else if (seccionMod=="nombreUsuario") administrador[0].setNombreUsuario(cadena);
-    else if (seccionMod=="direccion") administrador[0].setDireccion(cadena);
+    else if (seccionMod=="direccion") administrador[0].setDomicilio(cadena);
     else if (seccionMod=="contrasenha") administrador[0].setContrasenha(cadena);
 }
 
@@ -279,27 +280,31 @@ void Almacen::modificarDatosProductoPrecio(int indice, string &seccion, float nu
 
 void Almacen::cargarInfo(){
         ifstream registro("Data\134DataUsuarios\134DataAdmin.txt");
-        string codigo, nombre, nombreUsuario, direccion, DNI, contrasenha, directorio;
-        getline(registro, codigo);
+        string codigo, nombre, nombreUsuario, direccion, DNI, contrasenha, directorio, edad;
         getline(registro, nombre);
-        getline(registro, nombreUsuario);
-        getline(registro, direccion);
         getline(registro, DNI);
+        getline(registro, direccion);
+        getline(registro, edad);
+        getline(registro, codigo);
+        getline(registro, nombreUsuario);
         getline(registro, contrasenha);
         getline(registro, directorio);
-        administrador.push_back(Usuario{codigo, nombre, nombreUsuario, direccion, DNI, contrasenha, directorio, "Administrador"});
+        int edadInt= stoi(edad);
+        administrador.push_back(Usuario{nombre, DNI, direccion, edadInt, codigo, nombreUsuario, contrasenha, directorio, "Administrador"});
         registro.close();
 
         registro.open("Data\134DataUsuarios\134DataEmpleados.txt");
         for (int i=0; i<contarEmpleados(); i++){
-            getline(registro, codigo);
             getline(registro, nombre);
-            getline(registro, nombreUsuario);
-            getline(registro, direccion);
             getline(registro, DNI);
+            getline(registro, direccion);
+            getline(registro, edad);
+            getline(registro, codigo);
+            getline(registro, nombreUsuario);
             getline(registro, contrasenha);
             getline(registro, directorio);
-            listEmpleados.push_back(Usuario{codigo, nombre, nombreUsuario, direccion, DNI, contrasenha, directorio, "Empleado"});
+            edadInt= stoi(edad);
+            listEmpleados.push_back(Usuario{nombre, DNI, direccion, edadInt, codigo, nombreUsuario, contrasenha, directorio, "Empleado"});
         }
         registro.close();
 
@@ -345,22 +350,24 @@ void Almacen::cargarInfo(){
 
 void Almacen::guardarInfo(){
     ofstream registro("Data\134DataUsuarios\134DataAdmin.txt");
+    registro << administrador[0].getNombresyApellidos() << endl;
+    registro << administrador[0].getNroDNI() << endl;
+    registro << administrador[0].getDomicilio() << endl;
+    registro << administrador[0].getEdad() << endl;
     registro << administrador[0].getCodigo() << endl;
-    registro << administrador[0].getNombre() << endl;
     registro << administrador[0].getNombreUsuario() << endl;
-    registro << administrador[0].getDireccion() << endl;
-    registro << administrador[0].getDNI() << endl;
     registro << administrador[0].getContrasenha() << endl;
     registro << administrador[0].getDirectorio() << endl;
     registro.close();
     registro.open("Data\134DataUsuarios\134DataEmpleados.txt");
     int valor= listEmpleados.size();
     for (int i=0; i<valor; i++){
+        registro << listEmpleados[i].getNombresyApellidos() << endl;
+        registro << listEmpleados[i].getNroDNI() << endl;
+        registro << listEmpleados[i].getDomicilio() << endl;
+        registro << listEmpleados[i].getEdad() << endl;
         registro << listEmpleados[i].getCodigo() << endl;
-        registro << listEmpleados[i].getNombre() << endl;
         registro << listEmpleados[i].getNombreUsuario() << endl;
-        registro << listEmpleados[i].getDireccion() << endl;
-        registro << listEmpleados[i].getDNI() << endl;
         registro << listEmpleados[i].getContrasenha() << endl;
         registro << listEmpleados[i].getDirectorio() << endl;
     }

@@ -62,3 +62,59 @@
 1625147097 source:c:\c++, codeblocks\adminalmacen\persona.cpp
 	"Persona.h"
 
+1625165416 source:c:\users\fredd\documents\github\trabajo-final-de-semestre\almacen.cpp
+	"Almacen.h"
+
+1625159033 c:\users\fredd\documents\github\trabajo-final-de-semestre\almacen.h
+	"Usuario.h"
+	"Producto.h"
+	"Persona.h"
+
+1625164180 c:\users\fredd\documents\github\trabajo-final-de-semestre\usuario.h
+	<vector>
+	<fstream>
+	"Orden.h"
+	"Persona.h"
+
+1625014957 c:\users\fredd\documents\github\trabajo-final-de-semestre\orden.h
+	<iostream>
+	<cstring>
+	<ctime>
+
+1625164215 c:\users\fredd\documents\github\trabajo-final-de-semestre\persona.h
+	<iostream>
+	<cstring>
+
+1625010373 c:\users\fredd\documents\github\trabajo-final-de-semestre\producto.h
+	<vector>
+	<iostream>
+	<cstring>
+	"Orden.h"
+
+1625146524 source:c:\users\fredd\documents\github\trabajo-final-de-semestre\ejecucion.cpp
+	"Ejecucion.h"
+
+1624977023 c:\users\fredd\documents\github\trabajo-final-de-semestre\ejecucion.h
+	"Evento.h"
+
+1625145844 c:\users\fredd\documents\github\trabajo-final-de-semestre\evento.h
+	"Almacen.h"
+
+1625165269 source:c:\users\fredd\documents\github\trabajo-final-de-semestre\evento.cpp
+	"Evento.h"
+
+1625146086 source:c:\users\fredd\documents\github\trabajo-final-de-semestre\main.cpp
+	"Ejecucion.h"
+
+1625150873 source:c:\users\fredd\documents\github\trabajo-final-de-semestre\orden.cpp
+	"Orden.h"
+
+1625010373 source:c:\users\fredd\documents\github\trabajo-final-de-semestre\producto.cpp
+	"Producto.h"
+
+1625164912 source:c:\users\fredd\documents\github\trabajo-final-de-semestre\usuario.cpp
+	"Usuario.h"
+
+1625164657 source:c:\users\fredd\documents\github\trabajo-final-de-semestre\persona.cpp
+	"Persona.h"
+

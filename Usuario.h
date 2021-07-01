@@ -7,51 +7,40 @@
 
 using namespace std;
 
-class Usuario{
+class Usuario: public PersonaNatural{
 private:
     string cadena;//mandar informacion
-protected:
-    string codigo, nombre, nombreUsuario, direccion, DNI, contrasenha, directorio, rol;
+protected://string &_nombresyApellidos, string &_nroDNI, string &_domicilio, int _edad
+    string codigo, nombreUsuario, contrasenha, directorio, rol;
     vector<Orden> historial;
 public:
-    explicit Usuario(string &codigo, string &nombre, string &nombreUsuario, string &direccion, string &DNI, string &contrasenha, string &directorio, string rol){
-        this->codigo= codigo;
-        this->nombre=  nombre;
-        this->nombreUsuario= nombreUsuario;
-        this->direccion= direccion;
-        this->DNI= DNI;
-        this->contrasenha= contrasenha;
-        this->directorio= directorio;
-        this->rol= rol;
+    explicit Usuario(string &nombresyApellidos_, string &nroDNI_, string &domicilio_, int edad_, string &codigo_, string &nombreUsuario_, string &contrasenha_, string &directorio_, string rol_): PersonaNatural(nombresyApellidos_, nroDNI_, domicilio_, edad_){
+        this->codigo= codigo_;
+        this->nombreUsuario= nombreUsuario_;
+        this->contrasenha= contrasenha_;
+        this->directorio= directorio_;
+        this->rol= rol_;
         fstream registro(directorio.c_str(), ios::app);
         registro.close();
     }
-    explicit Usuario(string &codigo, string &nombre, string &nombreUsuario, string &direccion, string &DNI, string &contrasenha, string rol){
-        this->codigo= codigo;
-        this->nombre=  nombre;
-        this->nombreUsuario= nombreUsuario;
-        this->direccion= direccion;
-        this->DNI= DNI;
-        this->contrasenha= contrasenha;
+    explicit Usuario(string &nombresyApellidos_, string &nroDNI_, string &domicilio_, int edad_, string &codigo_, string &nombreUsuario_, string &contrasenha_, string rol_): PersonaNatural(nombresyApellidos_, nroDNI_, domicilio_, edad_){
+        this->codigo= codigo_;
+        this->nombreUsuario= nombreUsuario_;
+        this->contrasenha= contrasenha_;
         this->directorio= "Data\134DataUsuarios\134Historial\134Historial"+nombreUsuario+".txt";
-        this->rol= rol;
+        this->rol= rol_;
         fstream registro(directorio.c_str(), ios::app);
         registro.close();
     }
 
-    string getNombre();
     string getNombreUsuario();
-    string getDireccion();
     string getCodigo();
     string getContrasenha();
-    string getDNI();
     string getDirectorio();
     int getDimensionHistorial();
     string getDataHistorial(int indice, string seccionOrden);
 
-    void setNombre(string &cadena);
     void setNombreUsuario(string &cadena);
-    void setDireccion(string &cadena);
     void setCodigo(string &cadena);
     void setContrasenha(string &cadena);
     void addOrdenHistorialInicio(Orden &orden);

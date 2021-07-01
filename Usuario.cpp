@@ -2,46 +2,37 @@
 
 void Usuario::mostrarInfo(string modo){
     if (modo=="table"){
-        printf("%s \t %-12s \t %-27s \t %s \t %-20s \n", codigo.c_str(), nombreUsuario.c_str(), nombre.c_str(), DNI.c_str(), direccion.c_str());
+        printf("%s \t %-12s \t %-27s \t %s \t %-20s \n", codigo.c_str(), nombreUsuario.c_str(), nombresyApellidos.c_str(), nroDNI.c_str(), domicilio.c_str());
     }
     else if (modo=="unit"){
-        string cadena;
+        string title;
         if (rol=="Administrador"){
-            cadena= "========================================INFORMACI\340N DEL ADMINISTRADOR===================================================\n";
+            title= "========================================INFORMACI\340N DEL ADMINISTRADOR===================================================\n";
         }
         else if (rol=="Empleado"){
-            cadena= "==========================================INFORMACI\340N DEL EMPLEADO======================================================\n";
+            title= "==========================================INFORMACI\340N DEL EMPLEADO======================================================\n";
         }
-        cout << cadena;
-        cout << "C\340DIGO             : " << codigo << endl;
-        cout << "NOMBRES Y APELLIDOS: " << nombre << endl;
-        cout << "DNI                : " << DNI << endl;
-        cout << "DIRECCI\340N          : " << direccion << endl;
-        cout << "NOMBRE DE USUARIO  : " << nombreUsuario << endl;
-        cout << "CONTRASE\245A         : " << contrasenha << endl;
+        cout << title;
+        cout << "DATOS PERSONALES:=========================================\n";
+        PersonaNatural::mostrarInfo();
+        cout << "DATOS DE USUARIO:=========================================\n";
+        cout << "C\340DIGO DE USUARIO     : " << codigo << endl;
+        cout << "NOMBRE DE USUARIO     : " << nombreUsuario << endl;
+        cout << "CONTRASE\245A DE USUARIO : " << contrasenha << endl;
         cout << "========================================================================================================================\n";
         system("pause");
     }
 
 }
 //Gets
-string Usuario::getNombre(){
-    return nombre;
-}
 string Usuario::getNombreUsuario(){
     return nombreUsuario;
-}
-string Usuario::getDireccion(){
-    return direccion;
 }
 string Usuario::getCodigo(){
     return codigo;
 }
 string Usuario::getContrasenha(){
     return contrasenha;
-}
-string Usuario::getDNI(){
-    return DNI;
 }
 string Usuario::getDirectorio(){
     return directorio;
@@ -62,14 +53,8 @@ string Usuario::getDataHistorial(int indice, string seccionOrden){
 
 
 //Sets
-void Usuario::setNombre(string &cadena){
-    nombre= cadena;
-}
 void Usuario::setNombreUsuario(string &cadena){
     nombreUsuario= cadena;
-}
-void Usuario::setDireccion(string &cadena){
-    direccion= cadena;
 }
 void Usuario::setCodigo(string &cadena){
     codigo= cadena;

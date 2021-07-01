@@ -1,0 +1,28 @@
+13:43:59
+01/07/2021
+ENTRADA
+Bebidas
+Gaseosa Coca Cola
+11
+001
+13:43:40
+01/07/2021
+ENTRADA
+P. Limpieza
+Lavavajillas Sapolio
+13
+001
+13:43:27
+01/07/2021
+ENTRADA
+Bebidas
+Gaseosa Coca Cola
+12
+001
+13:43:13
+01/07/2021
+SALIDA
+Abarrotes
+Azucar blanca Paramonga
+15
+001

@@ -34,7 +34,7 @@ int Evento::menu(string modo){
             limpiar();
             cout << "===================================================MEN\351 PRINCIPAL=======================================================\n";
             cout << "Ingrese una opci\242n: \n";
-            cout << "1. ADMINISTRAR INFORMACI\340N PERSONAL\n2. ADMINISTRAR PRODUCTOS\n3. ADMINISTRAR EMPLEADOS\n4. VER HISTORIAL\n5. REGRESAR\n6. SALIR\n";
+            cout << "1. ADMINISTRAR INFORMACI\340N PERSONAL\n2. ADMINISTRAR PRODUCTOS\n3. ADMINISTRAR EMPLEADOS\n4. VER HISTORIAL\n5. CERRAR SESI\340N\n6. SALIR\n";
             cout << dimension;
             cin >> valor;
         }while(valor<1 || 6<valor);
@@ -106,7 +106,7 @@ int Evento::escogerEmpleadoEspecifico(){
         cout << "============================================LISTA DE EMPLEADOS EXISTENTES===============================================\n";
         cout << "Escoja un empleado:\n";
         for (int i=0; i<valor; i++){
-            cout << i+1 << ".\t" << listEmpleados[i].getNombre() << endl;
+            cout << i+1 << ".\t" << listEmpleados[i].getNombresyApellidos() << endl;
         }
         cout << "========================================================================================================================\n";
         cin >> valor2;
@@ -223,7 +223,7 @@ void Evento::dataRegistrarProducto(string &seccion){
         int candado=1;
         while(candado){
             cout << "==========================================REGISTRAR PRODUCTO DENTRO DEL ALMAC\220N=========================================\n";
-            cout << "CODIGOS USADOS:\n";
+            cout << "C\340DIGOS USADOS:\n";
             for (int i=0; i<valor3; i++) cout << listProductos[valor2][i].getCodigo() << "; ";
             cout << "\nIngrese el c\242digo del producto a registrar: \nEl c\242digo no debe ser igual al de los productos registrados anteriormente.\n";
             cout << dimension;
@@ -254,7 +254,6 @@ void Evento::dataRegistrarProducto(string &seccion){
         cout << "==========================================REGISTRAR EMPLEADO DENTRO DEL ALMAC\220N=========================================\n";
         cout << "El empleado a registrar ser\240:\n";
         nuevo.mostrarInfo("unit");
-        pausar();
         registrarProducto(nuevo);
         cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
         pausar();
@@ -272,12 +271,13 @@ void Evento::dataRegistrarEmpleado(){
         cin >> valor;
     } while (valor!=1 && valor!=2);
     if (valor==1){
-        string codigo, nombre, nombreCompleto, direccion, DNI, contrasenha, rol="Empleado";
+        string nombre, nombreCompleto, direccion, DNI, codigo, contrasenha, rol="Empleado";
+        int edad;
         limpiar();
         int candado=1;
         while(candado){
             cout << "==========================================REGISTRAR EMPLEADO DENTRO DEL ALMAC\220N=========================================\n";
-            cout << "CODIGOS USADOS:\n";
+            cout << "C\340DIGOS USADOS:\n";
             for (int i=0; i<getSizeEmpleados(); i++) cout << listEmpleados[i].getCodigo() << ". ";
             cout << "\nIngrese el c\242digo del empleado a registrar: \nEl c\242digo no debe ser igual al de los empleados registrados anteriormente.\n";
             cout << dimension;
@@ -301,16 +301,17 @@ void Evento::dataRegistrarEmpleado(){
         getline(cin,direccion);
         cout << "Ingrese el documento de identidad del empleado: \n";
         cin >> DNI;
+        cout << "Ingrese la edad del empleado: \n";
+        cin >> edad;
         cout << "Ingrese el nombre de usuario del empleado: \n";
         cin >> nombre;
         cout << "Ingrese la contrase\244a del empleado: \n";
         cin >> contrasenha;
-        Usuario nuevo(codigo, nombreCompleto, nombre, direccion, DNI, contrasenha, rol);
+        Usuario nuevo(nombreCompleto, DNI, direccion, edad, codigo, nombre, contrasenha, rol);
         limpiar();
         cout << "==========================================REGISTRAR EMPLEADO DENTRO DEL ALMAC\220N=========================================\n";
         cout << "El empleado a registrar ser\240:\n";
         nuevo.mostrarInfo("unit");
-        pausar();
         registrarEmpleado(nuevo);
         cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
         pausar();
@@ -481,7 +482,7 @@ int Evento::menuAdminEmpleadoEspecifico(int numero){
         limpiar();
         cout << "==================================================ADMINISTRAR AL EMPLEADO===============================================\n";
         cout << "C\340DIGO DEL EMPLEADO: " << listEmpleados[numero].getCodigo() << endl;
-        cout << "NOMBRES Y APELLIDOS: " << listEmpleados[numero].getNombre() << endl;
+        cout << "NOMBRES Y APELLIDOS: " << listEmpleados[numero].getNombresyApellidos() << endl;
         cout << "Qu\202 desea hacer con el empleado?:\n";
         cout << "1. VER SU HISTORIAL\n2. VER INFORMACI\340N\n3. RETIRARLO DEL SISTEMA\n4. REGRESAR\n";
         cout << dimension;
@@ -497,7 +498,7 @@ int Evento::menuSacarProducto(int indiceEmpleado){
     do{
         limpiar();
         cout << "==============================================RETIRAR PRODUCTO DEL ALMACEN==============================================\n";
-        cout << "NOMBRES Y APELLIDOS: " << listEmpleados[indiceEmpleado].getNombre() << endl;
+        cout << "NOMBRES Y APELLIDOS: " << listEmpleados[indiceEmpleado].getNombresyApellidos() << endl;
         cout << "Desea retirar cierta cantidad de un producto?:\nSe le a\244adir\240 el orden de SALIDA a su historial.\n";
         cout << "1. SI\n2. NO\n";
         cout << dimension;
@@ -511,7 +512,7 @@ int Evento::menuEntrarProducto(int indiceEmpleado){
     do{
         limpiar();
         cout << "==============================================INGRESAR PRODUCTO AL ALMACEN==============================================\n";
-        cout << "NOMBRES Y APELLIDOS: " << listEmpleados[indiceEmpleado].getNombre() << endl;
+        cout << "NOMBRES Y APELLIDOS: " << listEmpleados[indiceEmpleado].getNombresyApellidos() << endl;
         cout << "Desea ingresar cierta cantidad de un producto?:\nSe le a\244adir\240 el orden de ENTRADA a su historial.\n";
         cout << "1. SI\n2. NO\n";
         cout << dimension;
@@ -533,13 +534,13 @@ void Evento::entrarProducto(int indiceEmpleado){
         cout << "==============================================INGRESAR LA CANTIDAD DEL PRODUCTO=========================================\n";
         cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ORDEN DE " << tipo << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"<<endl;
         cout << "DESCRIPCI\340N Y PRESENTACI\340N DEL PRODUCTO: " << listProductos[seccionProd][prodEspecifico].getDescripcion() << " " <<listProductos[seccionProd][prodEspecifico].getPresentacion() << endl;
-        cout << "STOCK EXISTENTE DEL PRODUCTO: " << existente << endl;
-        cout << "EMPLEADO ENCARGADO DE LA ORDEN: " << listEmpleados[indiceEmpleado].getNombre() << endl;
+        cout << "STOCK EXISTENTE DEL PRODUCTO           : " << existente << endl;
+        cout << "EMPLEADO ENCARGADO DE LA ORDEN         : " << listEmpleados[indiceEmpleado].getNombresyApellidos() << endl;
         cout << "NOTA: La cantidad a ingresar debe ser no menor a '0'.\n\nIngrese la cantidad del producto a ingresar:\n";
         cout << dimension;
         cin >> cantidad;
     } while (cantidad<1);
-    string cantidadStr= to_string(existente);
+    string cantidadStr= to_string(cantidad);
     existente= existente+cantidad;
     listProductos[seccionProd][prodEspecifico].setStock(existente);
     registrarFlujoDeProducto(indiceEmpleado, prodEspecifico, tipo, cantidadStr, seccion);
@@ -561,8 +562,8 @@ void Evento::sacarProducto(int indiceEmpleado){
         cout << "==============================================INGRESAR LA CANTIDAD DEL PRODUCTO=========================================\n";
         cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ORDEN DE " << tipo << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"<<endl;
         cout << "DESCRIPCI\340N Y PRESENTACI\340N DEL PRODUCTO: " << listProductos[seccionProd][prodEspecifico].getDescripcion() << " " <<listProductos[seccionProd][prodEspecifico].getPresentacion() << endl;
-        cout << "STOCK EXISTENTE DEL PRODUCTO: " << existente << endl;
-        cout << "EMPLEADO ENCARGADO DE LA ORDEN: " << listEmpleados[indiceEmpleado].getNombre() << endl;
+        cout << "STOCK EXISTENTE DEL PRODUCTO           : " << existente << endl;
+        cout << "EMPLEADO ENCARGADO DE LA ORDEN         : " << listEmpleados[indiceEmpleado].getNombresyApellidos() << endl;
         cout << "NOTA: La cantidad a retirar del almac\202n debe ser no menor a '0' ni mayor al stock existente del producto.\n\nIngrese la cantidad del producto a retirar:\n";
         cout << dimension;
         cin >> cantidad;
