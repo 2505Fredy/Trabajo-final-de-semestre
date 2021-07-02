@@ -7,7 +7,7 @@
 using namespace std;
 
 struct Orden{
-protected:
+private:
     string hora, fecha, tipo, seccion, descripcion, cantidad, codigoEmpleado;
 public:
     explicit Orden(string &tipo, string &seccion, string &descripcion, string &cantidad, string &codigoEmpleado){

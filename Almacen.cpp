@@ -76,6 +76,13 @@ int Almacen::getSizeEmpleados(){
     return listEmpleados.size();
 }
 
+void Almacen::ordenarListaEmpleados(){
+    sort(listEmpleados.begin(), listEmpleados.end());
+}
+void Almacen::ordenarListaProductos(int seccion){
+    sort(listProductos[seccion].begin(), listProductos[seccion].end());
+}
+
 void Almacen::registrarFlujoDeProducto(int indiceEmpleado, int indiceProducto, string &tipo, string &cantidad,  string &seccionProducto){
     int valor=0;
     if (seccionProducto=="Bebidas") valor=1;
@@ -202,6 +209,7 @@ void Almacen::modificarDatosAdmin(string seccionMod, string &cadena){
 
 void Almacen::registrarEmpleado(Usuario &empleado){
     listEmpleados.push_back(empleado);
+    ordenarListaEmpleados();
 }
 
 void Almacen::eliminarEmpleado(int indice){
@@ -211,12 +219,15 @@ void Almacen::eliminarEmpleado(int indice){
 void Almacen::registrarProducto(Producto &producto){
     if (producto.getSeccion()=="Abarrotes"){
         listProductos[0].push_back(producto);
+        ordenarListaProductos(0);
     }
     else if (producto.getSeccion()=="Bebidas"){
         listProductos[1].push_back(producto);
+        ordenarListaProductos(1);
     }
     else if (producto.getSeccion()=="Limpieza"){
         listProductos[2].push_back(producto);
+        ordenarListaProductos(2);
     }
 }
 
@@ -307,6 +318,7 @@ void Almacen::cargarInfo(){
             listEmpleados.push_back(Usuario{nombre, DNI, direccion, edadInt, codigo, nombreUsuario, contrasenha, directorio, "Empleado"});
         }
         registro.close();
+        ordenarListaEmpleados();
 
         //Cargar Abarrotes
         registro.open("Data\134DataProductos\134DataAbarrotes.txt");
@@ -345,7 +357,7 @@ void Almacen::cargarInfo(){
             listProductos[2].push_back(Producto{"P. Limpieza", codigo, descripcion, presentacion, stock, price});
         }
         registro.close();
-
+        for(int i=0; i<3; i++) ordenarListaProductos(i);
 }
 
 void Almacen::guardarInfo(){

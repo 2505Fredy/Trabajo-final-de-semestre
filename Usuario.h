@@ -9,8 +9,7 @@ using namespace std;
 
 class Usuario: public PersonaNatural{
 private:
-    string cadena;//mandar informacion
-protected://string &_nombresyApellidos, string &_nroDNI, string &_domicilio, int _edad
+    string cadena;
     string codigo, nombreUsuario, contrasenha, directorio, rol;
     vector<Orden> historial;
 public:
@@ -31,6 +30,15 @@ public:
         this->rol= rol_;
         fstream registro(directorio.c_str(), ios::app);
         registro.close();
+    }
+
+    bool operator < (const Usuario &Otro){
+        if (codigo < Otro.codigo) return true;
+        return false;
+    }
+    bool operator > (const Usuario &Otro){
+        if (codigo > Otro.codigo) return true;
+        return false;
     }
 
     string getNombreUsuario();

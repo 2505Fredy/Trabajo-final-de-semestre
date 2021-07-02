@@ -5,12 +5,15 @@
 
 class Evento: public Almacen{
 protected:
-public:
     explicit Evento(string &_nombreComercial, string &_razonSocial, string &_domicilioFiscal, string &_nroRUC, string &_fin):Almacen(_nombreComercial, _razonSocial, _domicilioFiscal, _nroRUC, _fin){}
-    Evento& Instancia(string &_nombreComercial, string &_razonSocial, string &_domicilioFiscal, string &_nroRUC, string &_fin){
-        static Evento evento(_nombreComercial, _razonSocial, _domicilioFiscal, _nroRUC, _fin);
-        return evento;
+public:
+    static Evento *getInstancia(){//SINGLETON
+        string nombreComercial_="ALMACEN LAS MERCEDES", razonSocial_="E.I.R.L.", domicilioFiscal_="Jr. Ramon Castilla No. 1023- Juliaca", nroRUC_= "65234525345", fin_= "Con fines de lucro";
+        static Evento evento(nombreComercial_, razonSocial_, domicilioFiscal_, nroRUC_, fin_);
+        return &evento;
     }
+
+
     void limpiar();
     void pausar();
     void salir();

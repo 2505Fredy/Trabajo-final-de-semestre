@@ -47,5 +47,6 @@ void Producto::mostrarInfo(string modo){
         cout << "STOCK                     : " << stock << endl;
         cout << "PRECIO POR PRESENTACI\340N   : " << precio << endl;
         cout << "========================================================================================================================\n";
+        system("pause");
     }
 }

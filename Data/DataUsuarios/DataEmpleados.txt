@@ -14,3 +14,19 @@ Av. Tacna No. 1432- Juliaca
 JoseF
 0303Jose
 Data\DataUsuarios\Historial\HistorialJoseF.txt
+Ronald Aceituno Churata
+76342356
+Jr. San Ignacio No. 120- Caracoto
+23
+003
+Ronald
+11223344
+Data\DataUsuarios\Historial\HistorialRonald.txt
+Juan Mendoza Palomino
+65432234
+Av. Circunvalacion No. 2342- Juliaca
+40
+004
+JuanM
+11112222
+Data\DataUsuarios\Historial\HistorialJuanM.txt

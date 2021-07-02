@@ -1,5 +1,6 @@
 #ifndef ALMACEN_H
 #define ALMACEN_H
+#include <algorithm>
 #include "Usuario.h"
 #include "Producto.h"
 #include "Persona.h"
@@ -32,6 +33,7 @@ public:
     void registrarEmpleado(Usuario &empleado);
     void eliminarEmpleado(int indice);
     void registrarFlujoDeProducto(int indiceEmpleado, int indiceProducto, string &tipo, string &cantidad,  string &seccionProducto);
+    void ordenarListaEmpleados();
 
     //Empleado
     void mostrarInfoEmpleado(int indice);
@@ -62,6 +64,7 @@ public:
     void modificarDatosProductoAtrib(int indice, string &seccion, string atributo, string &cadena);
     void modificarDatosProductoPrecio(int indice, string &seccion, float numero);
     void mostrarListProductosTotal();
+    void ordenarListaProductos(int seccion);
 
 
 };

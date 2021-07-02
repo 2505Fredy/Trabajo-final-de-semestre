@@ -8,7 +8,7 @@
 using namespace std;
 
 class Producto{
-protected:
+private:
     string codigo, descripcion, presentacion, seccion;
     int stock;
     float precio;
@@ -21,6 +21,14 @@ public:
         this->stock= stock;
         this->precio= precio;
     };
+    bool operator < (const Producto &Otro){
+        if (codigo < Otro.codigo) return true;
+        return false;
+    }
+    bool operator > (const Producto &Otro){
+        if (codigo > Otro.codigo) return true;
+        return false;
+    }
     string getCodigo();
     string getSeccion();
     string getDescripcion();

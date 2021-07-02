@@ -205,7 +205,7 @@ void Evento::dataRegistrarProducto(string &seccion){
         valor2=1;
         valor3= getSizeBebidas();
     }
-    else{
+    else if (seccion=="P. Limpieza"){
         valor2=2;
         valor3=getSizeLimpieza();
     }
@@ -224,12 +224,12 @@ void Evento::dataRegistrarProducto(string &seccion){
         while(candado){
             cout << "==========================================REGISTRAR PRODUCTO DENTRO DEL ALMAC\220N=========================================\n";
             cout << "C\340DIGOS USADOS:\n";
-            for (int i=0; i<valor3; i++) cout << listProductos[valor2][i].getCodigo() << "; ";
+            for (int i=0; i<valor3; i++) cout << listProductos[valor2][i].getCodigo() << ". ";
             cout << "\nIngrese el c\242digo del producto a registrar: \nEl c\242digo no debe ser igual al de los productos registrados anteriormente.\n";
             cout << dimension;
             cin >> codigo;
             int contador=0;
-            for (int i=0; i<getSizeEmpleados(); i++){
+            for (int i=0; i<valor3; i++){
                 if (listProductos[valor2][i].getCodigo()==codigo){
                     contador++;
                 }
@@ -251,12 +251,13 @@ void Evento::dataRegistrarProducto(string &seccion){
         cin >> precio;
         Producto nuevo(seccion, codigo, descripcion, presentacion, cantidad, precio);
         limpiar();
-        cout << "==========================================REGISTRAR EMPLEADO DENTRO DEL ALMAC\220N=========================================\n";
-        cout << "El empleado a registrar ser\240:\n";
+        cout << "==========================================REGISTRAR PRODUCTO DENTRO DEL ALMAC\220N=========================================\n";
+        cout << "El producto a registrar ser\240:\n";
         nuevo.mostrarInfo("unit");
         registrarProducto(nuevo);
         cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
         pausar();
+        return;
     }
     else return;
 }
@@ -315,6 +316,7 @@ void Evento::dataRegistrarEmpleado(){
         registrarEmpleado(nuevo);
         cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
         pausar();
+        return;
     }
     else return;
 }
