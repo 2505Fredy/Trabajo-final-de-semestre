@@ -75,6 +75,7 @@ public:
     void ordenarListaProductos(int seccion);
     void mostrarInfoProducto(int seccion, int indice, string modo);
     bool verificarContrasenhaEmpleado(int indice, string &contrasenha);
+    void eliminarFicheroEmpleado(int indice);
 
 
 };

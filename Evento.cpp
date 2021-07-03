@@ -193,7 +193,7 @@ void eliminarEmpleadoValidacion(int indice){
         } while(valor!=1 && valor!=2);
         if (valor==1){
             almacen->eliminarEmpleado(indice);
-            remove(almacen->getMostrarAtributosEmpleado(indice, "directorio").c_str());
+            almacen->eliminarFicheroEmpleado(indice);
             cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
             pausar();
 

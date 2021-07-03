@@ -241,6 +241,9 @@ void Almacen::registrarEmpleado(Usuario &empleado){
 void Almacen::eliminarEmpleado(int indice){
     listEmpleados.erase(listEmpleados.begin()+indice);
 }
+void Almacen::eliminarFicheroEmpleado(int indice){
+    remove(listEmpleados[indice].getDirectorio().c_str());
+}
 
 void Almacen::registrarProducto(Producto &producto){
     if (producto.getSeccion()=="Abarrotes"){
