@@ -47,22 +47,24 @@ public:
 
     //Empleado
     void mostrarInfoEmpleado(int indice);
-    void cargarHistorialEmpleado(int indice);
-    void mostrarHistorialEmpleado(int indice);
-    void guardarHistorialEmpleado(int indice);
     void modificarDatosEmpleado(int indice, string seccionMod, string &cadena);
 
     //Administrador
     void mostrarInfoAdmin();
-    void cargarHistorialAdmin();
-    void mostrarHistorialAdmin();
-    void guardarHistorialAdmin();
     void modificarDatosAdmin(string seccionMod, string &cadena);
     bool verificarContrasenhaAdmin(string &contrasenha);
 
-    //Generalizados
+    //Manejo de ficheros
     void cargarInfo();
     void guardarInfo();
+    void cargarHistorialAdmin();
+    void mostrarHistorialAdmin();
+    void guardarHistorialAdmin();
+    void cargarHistorialEmpleado(int indice);
+    void mostrarHistorialEmpleado(int indice);
+    void guardarHistorialEmpleado(int indice);
+    void eliminarFicheroEmpleado(int indice);
+
     //Listas de Productos
     void registrarProducto(Producto &producto);
     void eliminarProducto(int indice, string &seccion);
@@ -75,9 +77,6 @@ public:
     void ordenarListaProductos(int seccion);
     void mostrarInfoProducto(int seccion, int indice, string modo);
     bool verificarContrasenhaEmpleado(int indice, string &contrasenha);
-    void eliminarFicheroEmpleado(int indice);
-
-
 };
 
 #endif // ALMACEN_H
