@@ -1,3 +1,31 @@
+14:26:06
+03/07/2021
+ENTRADA
+Abarrotes
+Fideos Molitalia tallarines
+26
+002
+14:25:54
+03/07/2021
+ENTRADA
+Abarrotes
+Sopa instantanea Ajinomen
+24
+002
+14:24:24
+03/07/2021
+SALIDA
+Abarrotes
+Conserva de atun Beltran
+12
+001
+14:24:07
+03/07/2021
+SALIDA
+Abarrotes
+Sopa instantanea Ajinomen
+20
+001
 13:48:55
 01/07/2021
 ENTRADA

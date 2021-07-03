@@ -1,3 +1,17 @@
+14:24:24
+03/07/2021
+SALIDA
+Abarrotes
+Conserva de atun Beltran
+12
+001
+14:24:07
+03/07/2021
+SALIDA
+Abarrotes
+Sopa instantanea Ajinomen
+20
+001
 13:43:59
 01/07/2021
 ENTRADA

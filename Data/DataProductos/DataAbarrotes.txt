@@ -1,5 +1,5 @@
 100
-Azucar blanca Paramonga
+Azucar morena Paramonga
 saco x50 kilos
 129
 168.5
@@ -61,7 +61,7 @@ caja x40unid 500gr c/u
 112
 Fideos Molitalia tallarines
 bolsa x20unid 500gr c/u
-65
+91
 34
 113
 Fideos Molitalia pasta corta
@@ -71,7 +71,7 @@ bolsa x40unid 250gr c/u
 114
 Conserva de atun Beltran
 caja x24unid 150gr c/u
-74
+62
 37
 115
 Conserva de atun Gloria
@@ -81,5 +81,5 @@ caja x24unid 150gr c/u
 116
 Sopa instantanea Ajinomen
 caja x24unid 200gr c/u
-68
+72
 39

@@ -108,7 +108,7 @@ int escogerEmpleadoEspecifico(){
         cout << "============================================LISTA DE EMPLEADOS EXISTENTES===============================================\n";
         cout << "Escoja un empleado:\n";
         for (int i=0; i<valor; i++){
-            cout << i+1 << ".\t" << almacen->getMostrarAtributosEmpleado(valor, "nombresyApellidos") << endl;
+            cout << i+1 << ".\t" << almacen->getMostrarAtributosEmpleado(i, "nombresyApellidos") << endl;
         }
         cout << "========================================================================================================================\n";
         cin >> valor2;
@@ -149,7 +149,7 @@ void modificarDatosProductos(string &seccion, string seccionMod){
     cin.ignore(1);
     if (seccionMod=="precio"){
         float numero;
-        cout << "===============================================MODIFICAR DATOS DEL PRODUCTO==============================================\n";
+        cout << "===============================================MODIFICAR DATOS DEL PRODUCTO=============================================\n";
         cout << "Ingrese el/la nuevo/a " << seccionMod << " del producto:\n";
         cout << dimension;
         cin >> numero;
@@ -173,7 +173,7 @@ void modificarDatosProductos(string &seccion, string seccionMod){
         else return;
     }
     else{
-        cout << "===============================================MODIFICAR DATOS DEL PRODUCTO==============================================\n";
+        cout << "===============================================MODIFICAR DATOS DEL PRODUCTO=============================================\n";
         cout << "Ingrese el/la nuevo/a " << seccionMod << " del producto:\n";
         cout << dimension;
         getline(cin, cadenaMod);
