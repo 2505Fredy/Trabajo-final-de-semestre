@@ -172,7 +172,7 @@ void Almacen::guardarHistorialEmpleado(int indice){
     listEmpleados[indice].borrarHistorial();
 }
 void Almacen::modificarDatosEmpleado(int indice, string seccionMod, string &cadena){
-    if (seccionMod=="nombre") listEmpleados[indice].setNombresyApellidos(cadena);
+    if (seccionMod=="nombresyApellidos") listEmpleados[indice].setNombresyApellidos(cadena);
     else if (seccionMod=="nombreUsuario") listEmpleados[indice].setNombreUsuario(cadena);
     else if (seccionMod=="direccion") listEmpleados[indice].setDomicilio(cadena);
     else if (seccionMod=="contrasenha") listEmpleados[indice].setContrasenha(cadena);
@@ -223,7 +223,7 @@ void Almacen::guardarHistorialAdmin(){
     administrador[0].borrarHistorial();
 }
 void Almacen::modificarDatosAdmin(string seccionMod, string &cadena){
-    if (seccionMod=="nombre") administrador[0].setNombresyApellidos(cadena);
+    if (seccionMod=="nombresyApellidos") administrador[0].setNombresyApellidos(cadena);
     else if (seccionMod=="nombreUsuario") administrador[0].setNombreUsuario(cadena);
     else if (seccionMod=="direccion") administrador[0].setDomicilio(cadena);
     else if (seccionMod=="contrasenha") administrador[0].setContrasenha(cadena);
@@ -237,12 +237,13 @@ void Almacen::registrarEmpleado(Usuario &empleado){
     listEmpleados.push_back(empleado);
     ordenarListaEmpleados();
 }
+void Almacen::eliminarFicheroEmpleado(int indice){
+    remove(listEmpleados[indice].getDirectorio().c_str());
+}
 
 void Almacen::eliminarEmpleado(int indice){
     listEmpleados.erase(listEmpleados.begin()+indice);
-}
-void Almacen::eliminarFicheroEmpleado(int indice){
-    remove(listEmpleados[indice].getDirectorio().c_str());
+    eliminarFicheroEmpleado(indice);
 }
 
 void Almacen::registrarProducto(Producto &producto){

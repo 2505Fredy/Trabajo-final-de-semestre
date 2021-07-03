@@ -118,6 +118,7 @@ void ejecutar(){
                                                     }
                                                     case 4:{//Eliminar producto
                                                         modificarDatosProductos(seccion, "delete");
+                                                        candado4=0;
                                                         break;
                                                     }
                                                     case 5:{
@@ -163,8 +164,9 @@ void ejecutar(){
                                                     almacen->mostrarInfoEmpleado(especifico);
                                                     break;
                                                 }
-                                                case 3:{//Despedirlo
+                                                case 3:{//Eliminar
                                                     eliminarEmpleadoValidacion(especifico);
+                                                    candado4=0;
                                                     break;
                                                 }
                                                 case 4:{
