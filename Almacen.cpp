@@ -242,8 +242,8 @@ void Almacen::eliminarFicheroEmpleado(int indice){
 }
 
 void Almacen::eliminarEmpleado(int indice){
-    listEmpleados.erase(listEmpleados.begin()+indice);
     eliminarFicheroEmpleado(indice);
+    listEmpleados.erase(listEmpleados.begin()+indice);
 }
 
 void Almacen::registrarProducto(Producto &producto){
