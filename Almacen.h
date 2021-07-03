@@ -35,11 +35,14 @@ public:
     string getMostrarAtributosProducto(int seccion, int indice, string atributo);
     int getMostrarStockProducto(int seccion, int indice);
     void setStockProducto(int seccion, int indice, int cantidad);
+
+    //Registro de orden realizada por el empleado
+    void registrarFlujoDeProducto(int indiceEmpleado, int indiceProducto, string &tipo, string &cantidad,  string &seccionProducto);
+
     //Lista de Empleados
     void mostrarListEmpleados();
     void registrarEmpleado(Usuario &empleado);
     void eliminarEmpleado(int indice);
-    void registrarFlujoDeProducto(int indiceEmpleado, int indiceProducto, string &tipo, string &cantidad,  string &seccionProducto);
     void ordenarListaEmpleados();
 
     //Empleado
@@ -60,9 +63,6 @@ public:
     //Generalizados
     void cargarInfo();
     void guardarInfo();
-    void registrarHistorial();
-
-
     //Listas de Productos
     void registrarProducto(Producto &producto);
     void eliminarProducto(int indice, string &seccion);
