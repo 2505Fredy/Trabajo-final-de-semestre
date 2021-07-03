@@ -53,3 +53,33 @@ Arroz Coste¤o
 bolsa x10kilos
 35
 34
+111
+Lentejas Coste¤o
+caja x40unid 500gr c/u
+43
+83
+112
+Fideos Molitalia tallarines
+bolsa x20unid 500gr c/u
+65
+34
+113
+Fideos Molitalia pasta corta
+bolsa x40unid 250gr c/u
+76
+35
+114
+Conserva de atun Beltran
+caja x24unid 150gr c/u
+74
+37
+115
+Conserva de atun Gloria
+caja x24unid 150gr c/u
+72
+36
+116
+Sopa instantanea Ajinomen
+caja x24unid 200gr c/u
+68
+39

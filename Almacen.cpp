@@ -251,7 +251,7 @@ void Almacen::registrarProducto(Producto &producto){
         listProductos[1].push_back(producto);
         ordenarListaProductos(1);
     }
-    else if (producto.getSeccion()=="Limpieza"){
+    else if (producto.getSeccion()=="P. Limpieza"){
         listProductos[2].push_back(producto);
         ordenarListaProductos(2);
     }

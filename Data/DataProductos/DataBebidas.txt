@@ -38,3 +38,53 @@ Gaseosa SevenUp
 sixpack x2 litros c/u
 56
 35
+208
+Jugo Frugos
+sixpack x6unid 2litros c/u
+74
+24
+209
+Gaseosa Fanta
+sixpack x6unid 3litros c/u
+63
+35.5
+210
+Agua de manantial Cielo
+pack x24unid 500ml c/u
+76
+20
+211
+Agua mineral San Luis
+pack x24unid 500ml c/u
+83
+22
+212
+Refresco Aruba
+sixpack x6unid 3litros c/u
+74
+31.5
+213
+Limonada Schwepees
+caja x24unid 750ml c/u
+65
+69
+214
+Refresco rehidratante Powerade
+pck x12unid 600ml c/u
+74
+23
+215
+Refresco rehidratante Sporade
+pack x12unid 550ml c/u
+64
+25
+216
+Gaseosa Guarana
+sixpack x6unid 2.5litros c/u
+73
+36
+217
+Gaseosa Kola Inglesa
+pack x12unid 750ml c/u
+64
+37
