@@ -1,43 +1,42 @@
 #include "Ejecucion.h"
 
 void ejecutar(){
-    Evento *evento= Evento::getInstancia();
-    evento->cargarInfo();
-    cout << "Hola";
+    Almacen *almacen= Almacen::getInstancia();
+    almacen->cargarInfo();
     int candado=1;
     while (candado){
-        switch(evento->modo()){
+        switch(modo()){
             case 1:{//Modo Admin
-                evento->verificarContrasenha("Administrador", 0);
+                verificarContrasenha("Administrador", 0);
                 int candado2=1;
                 while(candado2){
-                    switch(evento->menu("Administrador")){
+                    switch(menu("Administrador")){
                         case 1:{//Admin info personal
                             int candado3=1;
                             while(candado3){
-                                switch(evento->menuAdminPersonal()){
+                                switch(menuAdminPersonal()){
                                     case 1:{//Ver info personal
-                                        evento->mostrarInfoAdmin();
+                                        almacen->mostrarInfoAdmin();
                                         break;
                                     }
                                     case 2:{//Editar info personal
                                         int candado4=1;
                                         while(candado4){
-                                            switch(evento->menuModificarDatos("Administrador")){
+                                            switch(menuModificarDatos("Administrador")){
                                                 case 1:{//Mod nombre
-                                                    evento->modificarDatosUsuario("nombre");
+                                                    modificarDatosUsuario("nombre");
                                                     break;
                                                 }
                                                 case 2:{//Mod nombreUsuario
-                                                    evento->modificarDatosUsuario("nombreUsuario");
+                                                    modificarDatosUsuario("nombreUsuario");
                                                     break;
                                                 }
                                                 case 3:{//Mod direccion
-                                                    evento->modificarDatosUsuario("direccion");
+                                                    modificarDatosUsuario("direccion");
                                                     break;
                                                 }
                                                 case 4:{//Mod contrasenha
-                                                    evento->modificarDatosUsuario("contrasenha");
+                                                    modificarDatosUsuario("contrasenha");
                                                     break;
                                                 }
                                                 case 5:{
@@ -45,7 +44,7 @@ void ejecutar(){
                                                     break;
                                                 }
                                                 case 6:{
-                                                    evento->salir();
+                                                    salir();
                                                     break;
                                                 }
                                             }
@@ -57,7 +56,7 @@ void ejecutar(){
                                         break;
                                     }
                                     case 4:{
-                                        evento->salir();
+                                        salir();
                                         break;
                                     }
                                 }
@@ -67,7 +66,7 @@ void ejecutar(){
                         case 2:{//Admin producto
                             while(true){
                                 string seccion;
-                                int valor= evento->escogerSeccion();
+                                int valor= escogerSeccion();
                                 if (valor==1) seccion= "Abarrotes";
                                 else if (valor==2) seccion= "Bebidas";
                                 else if (valor==3) seccion= "P. Limpieza";
@@ -76,21 +75,21 @@ void ejecutar(){
                                 }
                                 int candado3=1;
                                 while(candado3){
-                                    switch(evento->menuAdminProductos(seccion)){
+                                    switch(menuAdminProductos(seccion)){
                                         case 1:{//Ver info Prod
-                                            evento->mostrarListProductos(seccion);
+                                            almacen->mostrarListProductos(seccion);
                                             break;
                                         }
                                         case 2:{//Buscar prod
                                             int candado4=1;
                                             while(candado4){
-                                                switch(evento->menuBuscarProductos(seccion)){
+                                                switch(menuBuscarProductos(seccion)){
                                                     case 1:{//Busq Codigo
-                                                        evento->buscarProductos("codigo", seccion);
+                                                        buscarProductos("codigo", seccion);
                                                         break;
                                                     }
                                                     case 2:{//Busq Descripcion
-                                                        evento->buscarProductos("descripcion", seccion);
+                                                        buscarProductos("descripcion", seccion);
                                                         break;
                                                     }
                                                     case 3:{
@@ -104,21 +103,21 @@ void ejecutar(){
                                         case 3:{//Mod info
                                             int candado4=1;
                                             while(candado4){
-                                                switch(evento->menuModificarDatosProductos(seccion)){
+                                                switch(menuModificarDatosProductos(seccion)){
                                                     case 1:{//Mod descripcion
-                                                        evento->modificarDatosProductos(seccion, "descripcion");
+                                                        modificarDatosProductos(seccion, "descripcion");
                                                         break;
                                                     }
                                                     case 2:{//Mod presentacion
-                                                        evento->modificarDatosProductos(seccion, "presentacion");
+                                                        modificarDatosProductos(seccion, "presentacion");
                                                         break;
                                                     }
                                                     case 3:{//Mod precio
-                                                        evento->modificarDatosProductos(seccion, "precio");
+                                                        modificarDatosProductos(seccion, "precio");
                                                         break;
                                                     }
                                                     case 4:{//Eliminar producto
-                                                        evento->modificarDatosProductos(seccion, "delete");
+                                                        modificarDatosProductos(seccion, "delete");
                                                         break;
                                                     }
                                                     case 5:{
@@ -130,7 +129,7 @@ void ejecutar(){
                                             break;
                                         }
                                         case 4:{//Registrar producto
-                                            evento->dataRegistrarProducto(seccion);
+                                            dataRegistrarProducto(seccion);
                                             break;
                                         }
                                         case 5:{
@@ -145,27 +144,27 @@ void ejecutar(){
                         case 3:{//Admin empleado
                             int candado3=1;
                             while(candado3){
-                                switch(evento->menuAdminEmpleados()){
+                                switch(menuAdminEmpleados()){
                                     case 1:{//Ver tabla empleados
-                                        evento->mostrarListEmpleados();
+                                        almacen->mostrarListEmpleados();
                                         break;
                                     }
                                     case 2:{//Admin especifico
-                                        int especifico=evento->escogerEmpleadoEspecifico(), candado4=1;
+                                        int especifico= escogerEmpleadoEspecifico(), candado4=1;
                                         while(candado4){
-                                            switch(evento->menuAdminEmpleadoEspecifico(especifico)){
+                                            switch(menuAdminEmpleadoEspecifico(especifico)){
                                                 case 1:{//Ver historial
-                                                    evento->cargarHistorialEmpleado(especifico);
-                                                    evento->mostrarHistorialEmpleado(especifico);
-                                                    evento->guardarHistorialEmpleado(especifico);
+                                                    almacen->cargarHistorialEmpleado(especifico);
+                                                    almacen->mostrarHistorialEmpleado(especifico);
+                                                    almacen->guardarHistorialEmpleado(especifico);
                                                     break;
                                                 }
                                                 case 2:{//Ver info
-                                                    evento->mostrarInfoEmpleado(especifico);
+                                                    almacen->mostrarInfoEmpleado(especifico);
                                                     break;
                                                 }
                                                 case 3:{//Despedirlo
-                                                    evento->eliminarEmpleadoValidacion(especifico);
+                                                    eliminarEmpleadoValidacion(especifico);
                                                     break;
                                                 }
                                                 case 4:{
@@ -177,7 +176,7 @@ void ejecutar(){
                                         break;
                                     }
                                     case 3:{//registrar empleado
-                                        evento->dataRegistrarEmpleado();
+                                        dataRegistrarEmpleado();
                                         break;
                                     }
                                     case 4:{
@@ -189,8 +188,8 @@ void ejecutar(){
                             break;
                         }
                         case 4:{//Ver historial
-                            evento->cargarHistorialAdmin();
-                            evento->mostrarHistorialAdmin();
+                            almacen->cargarHistorialAdmin();
+                            almacen->mostrarHistorialAdmin();
                             break;
                         }
                         case 5:{
@@ -198,7 +197,7 @@ void ejecutar(){
                             break;
                         }
                         case 6:{
-                            evento->salir();
+                            salir();
                             break;
                         }
                     }
@@ -206,16 +205,16 @@ void ejecutar(){
                 break;
             }
             case 2:{//Modo Empleado
-                int empleado= evento->escogerEmpleadoEspecifico(), candado2=1;
-                evento->verificarContrasenha("Empleado", empleado);
+                int empleado= escogerEmpleadoEspecifico(), candado2=1;
+                verificarContrasenha("Empleado", empleado);
                 while(candado2){
-                    switch(evento->menu("Empleado")){
+                    switch(menu("Empleado")){
                         case 1:{//Salir producto
                             int candado3=1;
                             while(candado3){
-                                switch(evento->menuSacarProducto(empleado)){
+                                switch(menuSacarProducto(empleado)){
                                     case 1:{//sacar
-                                        evento->sacarProducto(empleado);
+                                        sacarProducto(empleado);
                                         break;
                                     }
                                     case 2:{
@@ -229,9 +228,9 @@ void ejecutar(){
                         case 2:{//Entrar producto
                             int candado3=1;
                             while(candado3){
-                                switch(evento->menuEntrarProducto(empleado)){
+                                switch(menuEntrarProducto(empleado)){
                                     case 1:{//entrar
-                                        evento->entrarProducto(empleado);
+                                        entrarProducto(empleado);
                                         break;
                                     }
                                     case 2:{
@@ -245,21 +244,21 @@ void ejecutar(){
                         case 3:{//Admin info personal
                             int candado4=1;
                             while(candado4){
-                                switch(evento->menuModificarDatos("Empleado")){
+                                switch(menuModificarDatos("Empleado")){
                                     case 1:{//Mod nombre
-                                        evento->modificarDatosUsuario("nombre", empleado);
+                                        modificarDatosUsuario("nombre", empleado);
                                         break;
                                     }
                                     case 2:{//Mod nombreUsuario
-                                        evento->modificarDatosUsuario("nombreUsuario", empleado);
+                                        modificarDatosUsuario("nombreUsuario", empleado);
                                         break;
                                     }
                                     case 3:{//Mod direccion
-                                        evento->modificarDatosUsuario("direccion", empleado);
+                                        modificarDatosUsuario("direccion", empleado);
                                         break;
                                     }
                                     case 4:{//Mod contrasenha
-                                        evento->modificarDatosUsuario("contrasenha", empleado);
+                                        modificarDatosUsuario("contrasenha", empleado);
                                         break;
                                     }
                                     case 5:{
@@ -267,7 +266,7 @@ void ejecutar(){
                                         break;
                                     }
                                     case 6:{
-                                        evento->salir();
+                                        salir();
                                         break;
                                     }
                                 }
@@ -275,15 +274,15 @@ void ejecutar(){
                             break;
                         }
                         case 4:{//ver historial
-                            evento->cargarHistorialEmpleado(empleado);
-                            evento->mostrarHistorialEmpleado(empleado);
-                            evento->guardarHistorialEmpleado(empleado);
-                            evento->cargarHistorialAdmin();
-                            evento->guardarHistorialAdmin();
+                            almacen->cargarHistorialEmpleado(empleado);
+                            almacen->mostrarHistorialEmpleado(empleado);
+                            almacen->guardarHistorialEmpleado(empleado);
+                            almacen->cargarHistorialAdmin();
+                            almacen->guardarHistorialAdmin();
                             break;
                         }
                         case 5:{
-                            evento->mostrarInfoEmpleado(empleado);
+                            almacen->mostrarInfoEmpleado(empleado);
                             break;
                         }
                         case 6:{
@@ -291,7 +290,7 @@ void ejecutar(){
                             break;
                         }
                         case 7:{
-                            evento->salir();
+                            salir();
                             break;
                         }
                     }
@@ -299,15 +298,13 @@ void ejecutar(){
                 break;
             }
             case 3:{//Ver info general
-                evento->mostrarInfo();
+                almacen->mostrarInfo();
                 break;
             }
             case 4:{//Salir
-                evento->salir();
+                salir();
                 break;
             }
         }
     }
-
-
 }

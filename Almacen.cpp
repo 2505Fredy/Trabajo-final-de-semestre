@@ -76,6 +76,26 @@ int Almacen::getSizeEmpleados(){
     return listEmpleados.size();
 }
 
+string Almacen::getMostrarAtributosEmpleado(int indice, string atributo){
+    if (atributo=="nombresyApellidos") return listEmpleados[indice].getNombresyApellidos();
+    else if (atributo=="nombreUsuario") return listEmpleados[indice].getNombreUsuario();
+    else if (atributo=="contrasenha") return listEmpleados[indice].getContrasenha();
+    else if (atributo=="directorio") return listEmpleados[indice].getDirectorio();
+    return listEmpleados[indice].getCodigo();
+}
+
+string Almacen::getMostrarAtributosProducto(int seccion, int indice, string atributo){
+    if (atributo=="descripcion") return listProductos[seccion][indice].getDescripcion();
+    else if (atributo=="presentacion") return listProductos[seccion][indice].getPresentacion();
+    return listProductos[seccion][indice].getCodigo();
+}
+int Almacen::getMostrarStockProducto(int seccion, int indice){
+    return listProductos[seccion][indice].getStock();
+}
+void Almacen::setStockProducto(int seccion, int indice, int cantidad){
+    listProductos[seccion][indice].setStock(cantidad);
+}
+
 void Almacen::ordenarListaEmpleados(){
     sort(listEmpleados.begin(), listEmpleados.end());
 }
@@ -158,6 +178,10 @@ void Almacen::modificarDatosEmpleado(int indice, string seccionMod, string &cade
     else if (seccionMod=="contrasenha") listEmpleados[indice].setContrasenha(cadena);
 }
 
+bool Almacen::verificarContrasenhaEmpleado(int indice, string &contrasenha){
+    return listEmpleados[indice].verificarContrasenha(contrasenha);
+}
+
 //Administrador
 void Almacen::mostrarInfoAdmin(){
     administrador[0].mostrarInfo("unit");
@@ -205,7 +229,9 @@ void Almacen::modificarDatosAdmin(string seccionMod, string &cadena){
     else if (seccionMod=="contrasenha") administrador[0].setContrasenha(cadena);
 }
 
-
+bool Almacen::verificarContrasenhaAdmin(string &contrasenha){
+    return administrador[0].verificarContrasenha(contrasenha);
+}
 
 void Almacen::registrarEmpleado(Usuario &empleado){
     listEmpleados.push_back(empleado);
@@ -286,7 +312,9 @@ void Almacen::modificarDatosProductoPrecio(int indice, string &seccion, float nu
     listProductos[valor][indice].setPrecio(numero);
 }
 
-
+void Almacen::mostrarInfoProducto(int seccion, int indice, string modo){
+    listProductos[seccion][indice].mostrarInfo(modo);
+}
 
 
 void Almacen::cargarInfo(){

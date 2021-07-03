@@ -1,20 +1,22 @@
 #include "Evento.h"
 
+Almacen *almacen= Almacen::getInstancia();
+
 string dimension= "========================================================================================================================\n";
 
-void Evento::limpiar(){
+void limpiar(){
     system("cls");
 }
-void Evento::pausar(){
+void pausar(){
     system("pause");
 }
 
-void Evento::salir(){
-    guardarInfo();
+void salir(){
+    almacen->guardarInfo();
     exit(0);
 }
 
-int Evento::modo(){
+int modo(){
     int valor;
     do{
         limpiar();
@@ -27,7 +29,7 @@ int Evento::modo(){
     return valor;
 }
 
-int Evento::menu(string modo){
+int menu(string modo){
     int valor;
     if (modo=="Administrador"){
         do{
@@ -52,7 +54,7 @@ int Evento::menu(string modo){
     return valor;
 }
 
-int Evento::menuAdminPersonal(){
+int menuAdminPersonal(){
     int valor;
     do{
         limpiar();
@@ -65,7 +67,7 @@ int Evento::menuAdminPersonal(){
     return valor;
 }
 
-int Evento::menuAdminProductos(string &seccion){
+int menuAdminProductos(string &seccion){
     int valor;
     string title;
     if (seccion=="Abarrotes") title= "===========================================ADMINISTRAR INFORMACI\340N DE LOS  ABARROTES====================================\n";
@@ -82,7 +84,7 @@ int Evento::menuAdminProductos(string &seccion){
     return valor;
 }
 
-int Evento::menuModificarDatosProductos(string &seccion){
+int menuModificarDatosProductos(string &seccion){
     string title;
     int valor;
     if (seccion=="Abarrotes") title= "============================================MODIFICAR DATOS DE LOS ABARROTES============================================\n";
@@ -99,14 +101,14 @@ int Evento::menuModificarDatosProductos(string &seccion){
     return valor;
 }
 
-int Evento::escogerEmpleadoEspecifico(){
-    int valor=getSizeEmpleados(), valor2;
+int escogerEmpleadoEspecifico(){
+    int valor=almacen->getSizeEmpleados(), valor2;
     do{
         limpiar();
         cout << "============================================LISTA DE EMPLEADOS EXISTENTES===============================================\n";
         cout << "Escoja un empleado:\n";
         for (int i=0; i<valor; i++){
-            cout << i+1 << ".\t" << listEmpleados[i].getNombresyApellidos() << endl;
+            cout << i+1 << ".\t" << almacen->getMostrarAtributosEmpleado(valor, "nombresyApellidos") << endl;
         }
         cout << "========================================================================================================================\n";
         cin >> valor2;
@@ -114,18 +116,18 @@ int Evento::escogerEmpleadoEspecifico(){
     return (valor2-1);
 }
 
-int Evento::escogerProductoEspecifico(string &seccion){
+int escogerProductoEspecifico(string &seccion){
     int valor,valor2;
     if (seccion=="Abarrotes"){
-        valor= listProductos[0].size();
+        valor= almacen->getSizeAbarrotes();
         valor2=0;
     }
     else if (seccion=="Bebidas"){
-        valor= listProductos[1].size();
+        valor= almacen->getSizeBebidas();
         valor2=1;
     }
     else if (seccion=="P. Limpieza"){
-        valor= listProductos[2].size();
+        valor= almacen->getSizeLimpieza();
         valor2=2;
     }
     do{
@@ -133,7 +135,7 @@ int Evento::escogerProductoEspecifico(string &seccion){
         cout << "===========================================LISTA DE PRODUCTOS EXISTENTES===============================================\n";
         cout << "Escoja un producto:\n";
         for (int i=0; i<valor; i++){
-            cout << i+1 << ".\t" << listProductos[valor2][i].getDescripcion() << " " << listProductos[valor2][i].getPresentacion() << endl;
+            cout << i+1 << ".\t" << almacen->getMostrarAtributosProducto(valor2, i, "descripcion") << " " << almacen->getMostrarAtributosProducto(valor2, i, "presentacion") << endl;
         }
         cout << "========================================================================================================================\n";
         cin >> valor2;
@@ -141,7 +143,7 @@ int Evento::escogerProductoEspecifico(string &seccion){
     return (valor2-1);
 }
 
-void Evento::modificarDatosProductos(string &seccion, string seccionMod){
+void modificarDatosProductos(string &seccion, string seccionMod){
     string cadenaMod;
     int indice= escogerProductoEspecifico(seccion);
     cin.ignore(1);
@@ -151,7 +153,7 @@ void Evento::modificarDatosProductos(string &seccion, string seccionMod){
         cout << "Ingrese el/la nuevo/a " << seccionMod << " del producto:\n";
         cout << dimension;
         cin >> numero;
-        modificarDatosProductoPrecio(indice, seccion, numero);
+        almacen->modificarDatosProductoPrecio(indice, seccion, numero);
         cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
         pausar();
     }
@@ -164,7 +166,7 @@ void Evento::modificarDatosProductos(string &seccion, string seccionMod){
             cin >> valor;
         } while(valor!=1 && valor!=2);
         if (valor==1){
-            eliminarProducto(indice, seccion);
+            almacen->eliminarProducto(indice, seccion);
             cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
             pausar();
         }
@@ -175,13 +177,13 @@ void Evento::modificarDatosProductos(string &seccion, string seccionMod){
         cout << "Ingrese el/la nuevo/a " << seccionMod << " del producto:\n";
         cout << dimension;
         getline(cin, cadenaMod);
-        modificarDatosProductoAtrib(indice, seccion, seccionMod, cadenaMod);
+        almacen->modificarDatosProductoAtrib(indice, seccion, seccionMod, cadenaMod);
         cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
         pausar();
     }
 }
 
-void Evento::eliminarEmpleadoValidacion(int indice){
+void eliminarEmpleadoValidacion(int indice){
     int valor;
         do{
             cout << "=================================================RETIRAR AL EMPLEADO DEL SISTEMA========================================\n";
@@ -190,8 +192,8 @@ void Evento::eliminarEmpleadoValidacion(int indice){
             cin >> valor;
         } while(valor!=1 && valor!=2);
         if (valor==1){
-            eliminarEmpleado(indice);
-            remove(listEmpleados[indice].getDirectorio().c_str());
+            almacen->eliminarEmpleado(indice);
+            remove(almacen->getMostrarAtributosEmpleado(indice, "directorio").c_str());
             cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
             pausar();
 
@@ -199,15 +201,15 @@ void Evento::eliminarEmpleadoValidacion(int indice){
         else return;
 }
 
-void Evento::dataRegistrarProducto(string &seccion){
-    int valor, valor2=0, valor3=getSizeAbarrotes();
+void dataRegistrarProducto(string &seccion){
+    int valor, valor2=0, valor3=almacen->getSizeAbarrotes();
     if (seccion=="Bebidas"){
         valor2=1;
-        valor3= getSizeBebidas();
+        valor3= almacen->getSizeBebidas();
     }
     else if (seccion=="P. Limpieza"){
         valor2=2;
-        valor3=getSizeLimpieza();
+        valor3=almacen->getSizeLimpieza();
     }
     do{
         limpiar();
@@ -224,19 +226,19 @@ void Evento::dataRegistrarProducto(string &seccion){
         while(candado){
             cout << "==========================================REGISTRAR PRODUCTO DENTRO DEL ALMAC\220N=========================================\n";
             cout << "C\340DIGOS USADOS:\n";
-            for (int i=0; i<valor3; i++) cout << listProductos[valor2][i].getCodigo() << ". ";
+            for (int i=0; i<valor3; i++) cout << almacen->getMostrarAtributosProducto(valor2, i, "codigo") << ". ";
             cout << "\nIngrese el c\242digo del producto a registrar: \nEl c\242digo no debe ser igual al de los productos registrados anteriormente.\n";
             cout << dimension;
             cin >> codigo;
             int contador=0;
             for (int i=0; i<valor3; i++){
-                if (listProductos[valor2][i].getCodigo()==codigo){
+                if (almacen->getMostrarAtributosProducto(valor2, i, "codigo")==codigo){
                     contador++;
                 }
             }
             if (contador==0) candado=0;
             limpiar();
-            cout << "EL CODIGO YA EST\265 EN USO, ELIJA OTRO.\n";
+            if (contador!=0) cout << "EL CODIGO YA EST\265 EN USO, ELIJA OTRO.\n";
         }
         cin.ignore(1);
         cout << "==========================================REGISTRAR PRODUCTO DENTRO DEL ALMAC\220N=========================================\n";
@@ -254,7 +256,7 @@ void Evento::dataRegistrarProducto(string &seccion){
         cout << "==========================================REGISTRAR PRODUCTO DENTRO DEL ALMAC\220N=========================================\n";
         cout << "El producto a registrar ser\240:\n";
         nuevo.mostrarInfo("unit");
-        registrarProducto(nuevo);
+        almacen->registrarProducto(nuevo);
         cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
         pausar();
         return;
@@ -262,7 +264,7 @@ void Evento::dataRegistrarProducto(string &seccion){
     else return;
 }
 
-void Evento::dataRegistrarEmpleado(){
+void dataRegistrarEmpleado(){
     int valor;
     do{
         limpiar();
@@ -279,19 +281,19 @@ void Evento::dataRegistrarEmpleado(){
         while(candado){
             cout << "==========================================REGISTRAR EMPLEADO DENTRO DEL ALMAC\220N=========================================\n";
             cout << "C\340DIGOS USADOS:\n";
-            for (int i=0; i<getSizeEmpleados(); i++) cout << listEmpleados[i].getCodigo() << ". ";
+            for (int i=0; i<almacen->getSizeEmpleados(); i++) cout << almacen->getMostrarAtributosEmpleado(i, "codigo") << ". ";
             cout << "\nIngrese el c\242digo del empleado a registrar: \nEl c\242digo no debe ser igual al de los empleados registrados anteriormente.\n";
             cout << dimension;
             cin >> codigo;
             int contador=0;
-            for (int i=0; i<getSizeEmpleados(); i++){
-                if (listEmpleados[i].getCodigo()==codigo){
+            for (int i=0; i<almacen->getSizeEmpleados(); i++){
+                if (almacen->getMostrarAtributosEmpleado(i, "codigo")==codigo){
                     contador++;
                 }
             }
             if (contador==0) candado=0;
             limpiar();
-            cout << "EL CODIGO YA EST\265 EN USO, ELIJA OTRO.\n";
+            if (contador!=0) cout << "EL CODIGO YA EST\265 EN USO, ELIJA OTRO.\n";
         }
         cin.ignore(1);
         cout << "==========================================REGISTRAR EMPLEADO DENTRO DEL ALMAC\220N=========================================\n";
@@ -313,7 +315,7 @@ void Evento::dataRegistrarEmpleado(){
         cout << "==========================================REGISTRAR EMPLEADO DENTRO DEL ALMAC\220N=========================================\n";
         cout << "El empleado a registrar ser\240:\n";
         nuevo.mostrarInfo("unit");
-        registrarEmpleado(nuevo);
+        almacen->registrarEmpleado(nuevo);
         cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
         pausar();
         return;
@@ -321,7 +323,7 @@ void Evento::dataRegistrarEmpleado(){
     else return;
 }
 
-int Evento::menuBuscarProductos(string &seccion){
+int menuBuscarProductos(string &seccion){
     int valor;
     do{
         limpiar();
@@ -334,7 +336,7 @@ int Evento::menuBuscarProductos(string &seccion){
     return valor;
 }
 
-void Evento::buscarProductos(string metodo, string &seccion){
+void buscarProductos(string metodo, string &seccion){
     int valor, valor2, encontrados=0;
     string title, buscado;
     if (metodo=="codigo") title= "===================================BUSCAR PRODUCTOS POR EL M\220TODO DE B\351SQUEDA POR C\340DIGO================================\n";
@@ -346,25 +348,25 @@ void Evento::buscarProductos(string metodo, string &seccion){
     cin >> buscado;
     if (seccion=="Abarrotes") {
         valor=0;
-        valor2= getSizeAbarrotes();}
+        valor2= almacen->getSizeAbarrotes();}
     else if (seccion=="Bebidas") {
         valor=1;
-        valor2= getSizeBebidas();}
+        valor2= almacen->getSizeBebidas();}
     else if (seccion=="P. Limpieza") {
         valor=2;
-        valor2=getSizeLimpieza();}
+        valor2= almacen->getSizeLimpieza();}
     if (metodo=="codigo"){
         for (int i=0; i<valor2; i++){
-            if (listProductos[valor][i].getCodigo().find(buscado) != string::npos){
-                listProductos[valor][i].mostrarInfo("unit");
+            if (almacen->getMostrarAtributosProducto(valor, i, "codigo").find(buscado) != string::npos){
+                almacen->mostrarInfoProducto(valor, i, "unit");
                 encontrados++;
             }
         }
     }
     else if (metodo=="descripcion"){
         for (int i=0; i<valor2; i++){
-            if (listProductos[valor][i].getDescripcion().find(buscado) != string::npos){
-                listProductos[valor][i].mostrarInfo("unit");
+            if (almacen->getMostrarAtributosProducto(valor, i, "descripcion").find(buscado) != string::npos){
+                almacen->mostrarInfoProducto(valor, i, "unit");
                 encontrados++;
             }
         }
@@ -374,7 +376,7 @@ void Evento::buscarProductos(string metodo, string &seccion){
     pausar();
 }
 
-int Evento::escogerSeccion(){
+int escogerSeccion(){
     int valor;
     do{
         limpiar();
@@ -387,7 +389,7 @@ int Evento::escogerSeccion(){
     return valor;
 }
 
-int Evento::menuModificarDatos(string modo){
+int menuModificarDatos(string modo){
     int valor;
     string title;
     if (modo=="Administrador") title= "============================================MODIFICAR DATOS DEL ADMINISTRADOR===========================================\n";
@@ -403,7 +405,7 @@ int Evento::menuModificarDatos(string modo){
     return valor;
 }
 
-void Evento::verificarContrasenha(string rol, int indice){
+void verificarContrasenha(string rol, int indice){
     string contrasenha;
     limpiar();
     if (rol=="Administrador"){
@@ -412,7 +414,7 @@ void Evento::verificarContrasenha(string rol, int indice){
             cout << "Ingrese su contrase\244a actual:\nCaso contrario digite 'exit'.\n";
             cout << dimension;
             cin >> contrasenha;
-            if (!administrador[0].verificarContrasenha(contrasenha)){
+            if (!almacen->verificarContrasenhaAdmin(contrasenha)){
                 if (contrasenha=="exit"){
                     salir();
                 }
@@ -428,7 +430,7 @@ void Evento::verificarContrasenha(string rol, int indice){
             cout << "Ingrese su contrase\244a actual:\nCaso contrario digite 'exit'.\n";
             cout << dimension;
             cin >> contrasenha;
-            if (!listEmpleados[indice].verificarContrasenha(contrasenha)){
+            if (!almacen->verificarContrasenhaEmpleado(indice, contrasenha)){
                 if (contrasenha=="exit"){
                     salir();
                 }
@@ -441,31 +443,31 @@ void Evento::verificarContrasenha(string rol, int indice){
     return;
 }
 
-void Evento::modificarDatosUsuario(string seccion){
+void modificarDatosUsuario(string seccion){
     string cadenaMod;
     cin.ignore(1);
     cout << "============================================MODIFICAR DATOS DEL ADMINISTRADOR===========================================\n";
     cout << "Ingrese el/la nuevo/a " << seccion << " a modificar:\n";
     cout << dimension;
     getline(cin, cadenaMod);
-    modificarDatosAdmin(seccion, cadenaMod);
+    almacen->modificarDatosAdmin(seccion, cadenaMod);
     cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
     pausar();
 }
 
-void Evento::modificarDatosUsuario(string seccion, int indice){
+void modificarDatosUsuario(string seccion, int indice){
     string cadenaMod;
     cin.ignore(1);
     cout << "===============================================MODIFICAR DATOS DEL EMPLEADO=============================================\n";
     cout << "Ingrese el/la nuevo/a " << seccion << " a modificar:\n";
     cout << dimension;
     getline(cin, cadenaMod);
-    modificarDatosEmpleado(indice, seccion, cadenaMod);
+    almacen->modificarDatosEmpleado(indice, seccion, cadenaMod);
     cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
     pausar();
 }
 
-int Evento::menuAdminEmpleados(){
+int menuAdminEmpleados(){
     int valor;
     do{
         limpiar();
@@ -478,13 +480,13 @@ int Evento::menuAdminEmpleados(){
     return valor;
 }
 
-int Evento::menuAdminEmpleadoEspecifico(int numero){
+int menuAdminEmpleadoEspecifico(int numero){
     int valor;
     do{
         limpiar();
         cout << "==================================================ADMINISTRAR AL EMPLEADO===============================================\n";
-        cout << "C\340DIGO DEL EMPLEADO: " << listEmpleados[numero].getCodigo() << endl;
-        cout << "NOMBRES Y APELLIDOS: " << listEmpleados[numero].getNombresyApellidos() << endl;
+        cout << "C\340DIGO DEL EMPLEADO: " << almacen->getMostrarAtributosEmpleado(numero, "codigo") << endl;
+        cout << "NOMBRES Y APELLIDOS: " << almacen->getMostrarAtributosEmpleado(numero, "nombresyApellidos") << endl;
         cout << "Qu\202 desea hacer con el empleado?:\n";
         cout << "1. VER SU HISTORIAL\n2. VER INFORMACI\340N\n3. RETIRARLO DEL SISTEMA\n4. REGRESAR\n";
         cout << dimension;
@@ -495,12 +497,12 @@ int Evento::menuAdminEmpleadoEspecifico(int numero){
 
 
 //
-int Evento::menuSacarProducto(int indiceEmpleado){
+int menuSacarProducto(int indiceEmpleado){
     int validar;
     do{
         limpiar();
         cout << "==============================================RETIRAR PRODUCTO DEL ALMACEN==============================================\n";
-        cout << "NOMBRES Y APELLIDOS: " << listEmpleados[indiceEmpleado].getNombresyApellidos() << endl;
+        cout << "NOMBRES Y APELLIDOS: " << almacen->getMostrarAtributosEmpleado(indiceEmpleado, "nombresyApellidos") << endl;
         cout << "Desea retirar cierta cantidad de un producto?:\nSe le a\244adir\240 el orden de SALIDA a su historial.\n";
         cout << "1. SI\n2. NO\n";
         cout << dimension;
@@ -509,12 +511,12 @@ int Evento::menuSacarProducto(int indiceEmpleado){
     return validar;
 }
 
-int Evento::menuEntrarProducto(int indiceEmpleado){
+int menuEntrarProducto(int indiceEmpleado){
     int validar;
     do{
         limpiar();
         cout << "==============================================INGRESAR PRODUCTO AL ALMACEN==============================================\n";
-        cout << "NOMBRES Y APELLIDOS: " << listEmpleados[indiceEmpleado].getNombresyApellidos() << endl;
+        cout << "NOMBRES Y APELLIDOS: " << almacen->getMostrarAtributosEmpleado(indiceEmpleado, "nombresyApellidos") << endl;
         cout << "Desea ingresar cierta cantidad de un producto?:\nSe le a\244adir\240 el orden de ENTRADA a su historial.\n";
         cout << "1. SI\n2. NO\n";
         cout << dimension;
@@ -523,34 +525,34 @@ int Evento::menuEntrarProducto(int indiceEmpleado){
     return validar;
 }
 
-void Evento::entrarProducto(int indiceEmpleado){
-    int seccionProd=escogerSeccion();
+void entrarProducto(int indiceEmpleado){
+    int seccionProd= escogerSeccion();
     seccionProd--;
     if (seccionProd==3) salir();
     string seccion="Abarrotes", tipo= "ENTRADA";
     if (seccionProd==1) seccion= "Bebidas";
     else if (seccionProd==2) seccion= "P. Limpieza";
-    int prodEspecifico= escogerProductoEspecifico(seccion), cantidad, existente= listProductos[seccionProd][prodEspecifico].getStock();
+    int prodEspecifico= escogerProductoEspecifico(seccion), cantidad, existente= almacen->getMostrarStockProducto(seccionProd, prodEspecifico);
     do{
         limpiar();
         cout << "==============================================INGRESAR LA CANTIDAD DEL PRODUCTO=========================================\n";
         cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ORDEN DE " << tipo << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"<<endl;
-        cout << "DESCRIPCI\340N Y PRESENTACI\340N DEL PRODUCTO: " << listProductos[seccionProd][prodEspecifico].getDescripcion() << " " <<listProductos[seccionProd][prodEspecifico].getPresentacion() << endl;
+        cout << "DESCRIPCI\340N Y PRESENTACI\340N DEL PRODUCTO: " << almacen->getMostrarAtributosProducto(seccionProd, prodEspecifico, "descripcion") << " " <<almacen->getMostrarAtributosProducto(seccionProd, prodEspecifico, "presentacion") << endl;
         cout << "STOCK EXISTENTE DEL PRODUCTO           : " << existente << endl;
-        cout << "EMPLEADO ENCARGADO DE LA ORDEN         : " << listEmpleados[indiceEmpleado].getNombresyApellidos() << endl;
+        cout << "EMPLEADO ENCARGADO DE LA ORDEN         : " << almacen->getMostrarAtributosEmpleado(indiceEmpleado, "nombresyApellidos") << endl;
         cout << "NOTA: La cantidad a ingresar debe ser no menor a '0'.\n\nIngrese la cantidad del producto a ingresar:\n";
         cout << dimension;
         cin >> cantidad;
     } while (cantidad<1);
     string cantidadStr= to_string(cantidad);
     existente= existente+cantidad;
-    listProductos[seccionProd][prodEspecifico].setStock(existente);
-    registrarFlujoDeProducto(indiceEmpleado, prodEspecifico, tipo, cantidadStr, seccion);
+    almacen->setStockProducto(seccionProd, prodEspecifico,existente);
+    almacen->registrarFlujoDeProducto(indiceEmpleado, prodEspecifico, tipo, cantidadStr, seccion);
     cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
     pausar();
 }
 
-void Evento::sacarProducto(int indiceEmpleado){
+void sacarProducto(int indiceEmpleado){
     int seccionProd=escogerSeccion();
     seccionProd--;
     if (seccionProd==3) salir();
@@ -558,22 +560,22 @@ void Evento::sacarProducto(int indiceEmpleado){
     if (seccionProd==1) seccion= "Bebidas";
     else if (seccionProd==2) seccion= "P. Limpieza";
     int prodEspecifico= escogerProductoEspecifico(seccion), cantidad;
-    int existente= listProductos[seccionProd][prodEspecifico].getStock();
+    int existente= almacen->getMostrarStockProducto(seccionProd, prodEspecifico);
     do{
         limpiar();
         cout << "==============================================INGRESAR LA CANTIDAD DEL PRODUCTO=========================================\n";
         cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ORDEN DE " << tipo << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"<<endl;
-        cout << "DESCRIPCI\340N Y PRESENTACI\340N DEL PRODUCTO: " << listProductos[seccionProd][prodEspecifico].getDescripcion() << " " <<listProductos[seccionProd][prodEspecifico].getPresentacion() << endl;
+        cout << "DESCRIPCI\340N Y PRESENTACI\340N DEL PRODUCTO: " << almacen->getMostrarAtributosProducto(seccionProd, prodEspecifico, "descripcion") << " " << almacen->getMostrarAtributosProducto(seccionProd, prodEspecifico, "presentacion") << endl;
         cout << "STOCK EXISTENTE DEL PRODUCTO           : " << existente << endl;
-        cout << "EMPLEADO ENCARGADO DE LA ORDEN         : " << listEmpleados[indiceEmpleado].getNombresyApellidos() << endl;
+        cout << "EMPLEADO ENCARGADO DE LA ORDEN         : " << almacen->getMostrarAtributosEmpleado(indiceEmpleado, "nombresyApellidos") << endl;
         cout << "NOTA: La cantidad a retirar del almac\202n debe ser no menor a '0' ni mayor al stock existente del producto.\n\nIngrese la cantidad del producto a retirar:\n";
         cout << dimension;
         cin >> cantidad;
     } while (cantidad<1 || existente<cantidad);
     string cantidadStr= to_string(cantidad);
     existente= existente-cantidad;
-    listProductos[seccionProd][prodEspecifico].setStock(existente);
-    registrarFlujoDeProducto(indiceEmpleado, prodEspecifico, tipo, cantidadStr, seccion);
+    almacen->setStockProducto(seccionProd, prodEspecifico, existente);
+    almacen->registrarFlujoDeProducto(indiceEmpleado, prodEspecifico, tipo, cantidadStr, seccion);
     cout << "OPERACI\340N REALIZADA CON \220XITO.\n";
     pausar();
 
